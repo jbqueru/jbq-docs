@@ -1,0 +1,30 @@
+Copyright 2022 Jean-Baptiste M. "JBQ" "Djaybee" Queru
+
+This work is licensed under the
+Creative Commons Attribution 4.0 International License.
+To view a copy of this license, visit
+http://creativecommons.org/licenses/by/4.0/
+or send a letter to
+Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+0. Introduction
+
+This document is a collection of notes that I gathered while coding
+for various classic computers and consoles, typically the ones
+displaying bitmap graphics, which happen to be primarily 8-bit and
+16-bit, with some possible exceptions (Nintendo Game Boy Advance,
+arguably Atari Jaguar).
+
+This document includes multiple types of information, that are not
+individually identified as such:
+* Facts about the pieces of hardware being described.
+* As necessary, the familiar names of chips, instructions, registers,
+    and other similar aspects.
+* Original writing about that hardware (i.e. everything not included
+    in the previous categories.)
+
+1. MOS 6502
+
+2. Atari 2600
+
+1234567890123456789012345678901234567890123456789012345678901234567890
