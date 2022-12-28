@@ -31,9 +31,9 @@ enough hardware to generate an entire TV frame.
 The CPU is a MOS 6507, which is a MOS 6502 core in a smaller package,
 which limits it to 8kB of address space and eliminates interrupts.
 
-The primary support chip is a MOS RIOT 6532 (RAM, I/O, Timer), which
-is commonly called PIA (Peripheral Interface Adapter) even though
-that's the official name of the MOS 6520, a simpler chip. RIOT holds
+The primary support chip is a MOS RIOT 6532 "RAM, I/O, Timer", which
+is commonly called PIA "Peripheral Interface Adapter" (even though
+PIA is the official name of the MOS 6520, a simpler chip). RIOT holds
 128 bytes of RAM, I/O ports that map to the console switches and
 joystick directions, and a timer that can't be polled (since it can't
 trigger interrupts on the interrupt-less 6507).
@@ -44,6 +44,7 @@ several sound types and controllable volume but with poor frequency
 control) and graphics (enough information to generate a single line
 of TV signal, where creating an entire image requires to change the
 content of each line in software, in sync with the generation).
+It also includes a few additional input ports for controllers.
 
 2. MOS 6502
 
