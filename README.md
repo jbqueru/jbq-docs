@@ -1,2 +1,2 @@
-# docs-8bit
-Collection of information for 8-bit programming
+# JBQ Docs
+Collection of information for programming classic computers and consoles
