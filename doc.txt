@@ -119,9 +119,38 @@ notably from Apple, Atari, Commodore, Acorn, Oric, Nintendo.
 It is designed for simplicity. It has a full 16-bit address bus,
 which is not multiplexed with the 8-bit data bus, but the only
 internal 16-bit characteristic is the program counter. Notably,
-it can't store data addresses in registers, those have to be
-held in memory... and must themselves have a 8-bit addresses.
-Also, the stack is limited to 256 bytes and has a fixed address.
+it can't store data pointers in registers, those data pointers
+have to be held in memory... and must themselves have a 8-bit
+addresses. Also, the stack is limited to 256 bytes and has a fixed
+address.
 
+In practice, the first 256 bytes of memory, a.k.a. zeropage,
+play a provileged role. While the 6502 doesn't store its registers
+in memory like some other processors do, it still gives the zeropage
+some special characteristics: it is faster to access absolute
+addresses there, thanks to dedicated short addressing modes, and,
+more importantly, it is the only place where data pointers can
+be stored. That latter characteristic is why zeropage cannot be
+treated like a mere optimization, it supports unique and critical
+functionality.
+
+The primary registers are:
+* The accumulator (A, occasionally AC), which holds the result of
+    most ALU instructions.
+* The index registers X and Y. They are primarily used as offsets
+    into memory (such as arrays). They can be incremented,
+    decremented, compared, making them convenient loop counters.
+    X is the index from absolute addresses for read-modify-write
+    instructions in memory, and for load/store operations on Y.
+    It is also used to access the stack.
+    Y indexes absolute addresses for load/store operations on X.
+    Additionally, X and Y are both used for operations on A.
+    In addition to absolute indexed operations, X and Y can be used
+    for indirect addressing, X for arrays of pointers and Y for
+    pointers to arrays.
+* The stack pointer S. The only explicit access to that register is
+    by copying to/from X. It is used explicitly by typical stack
+    operations (push/pull, jsr/ret, interrupts). The stack is limited
+    to the second page of memory, i.e. addresses 256 to 511.
 
 1234567890123456789012345678901234567890123456789012345678901234567890
