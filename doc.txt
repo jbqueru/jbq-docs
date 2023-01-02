@@ -1,4 +1,7 @@
-Copyright 2022 Jean-Baptiste M. "JBQ" "Djaybee" Queru
+SPDX-License-Identifier: CC-BY-4.0
+
+Portions Copyright 2022 Jean-Baptiste M. "JBQ" "Djaybee" Queru
+Portions Copyright 2023 Jean-Baptiste M. "JBQ" "Djaybee" Queru
 
 This work is licensed under the
 Creative Commons Attribution 4.0 International License.
@@ -6,6 +9,9 @@ To view a copy of this license, visit
 http://creativecommons.org/licenses/by/4.0/
 or send a letter to
 Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+
+
 
 0. Introduction
 
@@ -144,7 +150,8 @@ The primary registers are:
     instructions in memory, and for load/store operations on Y.
     It is also used to access the stack.
     Y indexes absolute addresses for load/store operations on X.
-    Additionally, X and Y are both used for operations on A.
+    Additionally, X and Y are both used for operations on A, where X
+    is typically faster for indirect zeropage access.
     In addition to absolute indexed operations, X and Y can be used
     for indirect addressing, X for arrays of pointers and Y for
     pointers to arrays.
@@ -152,5 +159,26 @@ The primary registers are:
     by copying to/from X. It is used explicitly by typical stack
     operations (push/pull, jsr/ret, interrupts). The stack is limited
     to the second page of memory, i.e. addresses 256 to 511.
+
+The secondary registers are:
+* The processor status (P). Accessed very explicitly with push/push,
+    slightly less so with BRK/RTI (and interrupts). Some individual
+    bits are set explicitly (CIDV). Some bits are set as side effects
+    of various instructions (CZVN), where most data-handling
+    instructions set Z and N (except stores), with C and V set based
+    on the specifics of the instructions (though notably not by
+    increments and decrements). CZVN can also be tested by conditional
+    branches.
+* The program counter (PC). The only true 16-bit register in the 6502,
+    such that isntructions that access it are unrelated to the other
+    instructions. JMP and RET load it (from constant, memory, stack),
+    while JSR stores it (to stack) then loads it (from constant). BRK
+    and RTI do the same, paired with P, as do interrupts.
+
+Block diagrams suggests a range of additional registers, that
+are used for implementation details: the current instruction and the
+next one, a shadow copy of PC as input to its dedicated 16-bit
+incrementer, data bus input and output, address bus output, and
+input and output to the ALU.
 
 1234567890123456789012345678901234567890123456789012345678901234567890
