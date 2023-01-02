@@ -117,6 +117,25 @@ blank, and 240 active lines, would add up to 240 centered lines, with
 the possibility of pushing a little bit with 14/3/35/260, in which
 case the same 8 top lines and 12 bottom lines are more risky.
 
+1C Atari 2600 pixel aspect ratio
+
+With a 3.58 Mhz pixel clock, the pixel aspect ratio is approximately
+12/7, i.e. approximately 1.71. The following ratios are practical for
+various use cases:
+* 5/3 when used for CPU-based object positioning, which is limited
+    to multiples of 3 horizontal pixels.
+* 7/4 when used with the playfield, which updated every 4 pixels,
+    or with quad-width players / missiles / ball.
+* 12/7 itself can be useful in some situations with players, e.g.
+    a circle 7 pixels wide and 12 lines tall is essentially perfect,
+    as is a square of the same dimensions.
+
+An attempt at being more rigourous finds that 12 lines are taller
+by 0.28% than 7 pixels are tall, which amounts to half a line of
+difference over a full frame, and no application that relies on
+that kind of precision should be entrusted to a the non-standard
+frame timings of a 2600.
+
 2. MOS 6502
 
 The 6502 is an 8-bit microprocessor, used in a variety of devices,
