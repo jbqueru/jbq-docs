@@ -211,7 +211,7 @@ SP 16-bit stack pointer
 F 8 bit flags (5 bits actually used)
 A 8-bit accumulator
 BCDEHL 8-bit general purpose registers, can be paired for
-16-bit pointer operations
+16-bit pointer operations.
 
 Move operations:
 8-bit from any of ABCDEHL and (HL) and constant to any of
@@ -228,24 +228,69 @@ Swap operations:
 16-bit HL and (SP)
 16-bit HL and DE
 
-ALU 8-bit binary operations (A op x -> A)
+ALU 8-bit binary operations (A op x -> A):
 operations: add (w/ and w/o carry), sub (w/ and w/o borrow), compare,
 and or xor.
 operands: ABCDEHL, (HL), and 8-bit constants.
 
-ALU 8-bit unary operations
+ALU 8-bit unary operations:
 Rotate A left/right (w/ or w/o carry)
 Decimal add adjust of A
 Flip all bits of A
 Increment/decrement ABCDEHL and (HL)
 
-16-bit operations
+16-bit operations:
 Increment/decrement BC DE HL SP
 Add BC DE HL SP to HL
 
-1-bit operations
+1-bit operations:
 Set/clear carry
 
+Flow control:
+Jump, call, and return, unconditional, or conditional to sign,
+zero, parity, carry (set or not). Half-carry can't be tested for,
+it's only used in decimal add adjust (or push on the stack).
+All jumps and calls are absolute 16-bit addresses.
+Shortcuts for unconditional calls to addresses 0, 8, 16, ...56.
+Also, jump to HL
 
+Misc instructions:
+Interrupts: enable, disable, wait.
+I/O: in and out, between A and fixed 8-bit port.
+Nop.
+
+Best register use:
+A: temp 8-bit. Many instructions only operate on A, such that
+it is unlikely to hold any data for long.
+HL: pointer, pointer arithmetic, temp 16-bit.
+DE: better than BC as a pointer, can be swapped with HL.
+B: good habit to use it for tight/small loops, especially
+in a DCR/JNZ sequence that can be replaced with a smaller
+and slightly faster DJNZ on Z80.
+
+Some notes:
+No 16-bit move between registers. Got to move 8 bits at a time.
+
+Adding 16-bit values is easy. Subtracting them, not so much.
+Therefore, comparing pointers needs to be done 8 bits at a time.
+
+Increments are odd. 8-bit increments and 16-bit increments take the
+same time, which is slower than an 8-bit add. Also, they don't set
+carry.
+
+16-bit adds are odd. They only set carry, other flags are dropped.
+Rotation instructions also only set carry.
+
+True shifts to the left can be done by adding A or HL to itself.
+8-bit shifts to the right require to set the carry at each bit
+(unless you know that the lsb going out is zero).
+16-bit shifts to the right need to be done by hand, moving data
+8 bits at a time through the accumulator.
+
+Moves don't set any flags.
+
+All pointer-related instructions are strictly 16-bit, there are no
+mixed 8/16 instructions or modes. Combined with the lack of indexed
+instructions, having BC, DE and HL very quickly feels very tight.
 
 1234567890123456789012345678901234567890123456789012345678901234567890
