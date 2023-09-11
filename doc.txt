@@ -200,4 +200,52 @@ next one, a shadow copy of PC as input to its dedicated 16-bit
 incrementer, data bus input and output, address bus output, and
 input and output to the ALU.
 
+2. Intel 8080
+
+8-bit general-purpose ALU + 16-bit add/sub
+16-bit flat address space + 8-bit flat I/O space
+
+10 registers:
+PC 16-bit program counter
+SP 16-bit stack pointer
+F 8 bit flags (5 bits actually used)
+A 8-bit accumulator
+BCDEHL 8-bit general purpose registers, can be paired for
+16-bit pointer operations
+
+Move operations:
+8-bit from any of ABCDEHL and (HL) and constant to any of
+ABCDEHL and (HL), except for (HL) -> (HL).
+8-bit between A and (BC) or (DE) or 16-bit constant address.
+
+16-bit constant to BC, DE, HL, SP
+16-bit between HL and 16-bit constant address
+
+16-bit push/pop AF, BC, DE, HL
+16-bit HL to SP
+
+Swap operations:
+16-bit HL and (SP)
+16-bit HL and DE
+
+ALU 8-bit binary operations (A op x -> A)
+operations: add (w/ and w/o carry), sub (w/ and w/o borrow), compare,
+and or xor.
+operands: ABCDEHL, (HL), and 8-bit constants.
+
+ALU 8-bit unary operations
+Rotate A left/right (w/ or w/o carry)
+Decimal add adjust of A
+Flip all bits of A
+Increment/decrement ABCDEHL and (HL)
+
+16-bit operations
+Increment/decrement BC DE HL SP
+Add BC DE HL SP to HL
+
+1-bit operations
+Set/clear carry
+
+
+
 1234567890123456789012345678901234567890123456789012345678901234567890
