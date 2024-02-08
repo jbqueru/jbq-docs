@@ -1,7 +1,11 @@
+# JBQ Docs
+Collection of information for programming classic computers and consoles
+
 SPDX-License-Identifier: CC-BY-4.0
 
 Portions Copyright 2022 Jean-Baptiste M. "JBQ" "Djaybee" Queru
 Portions Copyright 2023 Jean-Baptiste M. "JBQ" "Djaybee" Queru
+Portions Copyright 2024 Jean-Baptiste M. "JBQ" "Djaybee" Queru
 
 This work is licensed under the
 Creative Commons Attribution 4.0 International License.
