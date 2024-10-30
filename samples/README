@@ -1,0 +1,3 @@
+This directory contains minimal samples to run code in various
+environments. They show how to invoke the assembler, how to package
+the output, how to invoke the emulator
