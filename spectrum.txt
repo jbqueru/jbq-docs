@@ -1,0 +1,68 @@
+JBQ's ZX Spectrum notes
+
+
+
+SPDX-License-Identifier: CC-BY-4.0
+
+Copyright 2024 Jean-Baptiste M. "JBQ" "Djaybee" Queru
+
+This work is licensed under the
+Creative Commons Attribution 4.0 International License.
+To view a copy of this license, visit
+http://creativecommons.org/licenses/by/4.0/
+or send a letter to
+Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+
+
+The primary copy of this document can be found at
+https://github.com/jbqueru/jbq-docs/blob/main/spectrum.txt
+
+
+
+Spectrum 16k / 48k / plus
+
+16 kiB of ROM 0000-3fff
+16 kiB of RAM 4000-7fff (16k)
+48 kiB of RAM 4000-ffff (48k)
+
+4000-57ff: screen bitmap
+5800-5aff: screen attributes
+5b00-5cca: reserved
+5ddb-7f57: user programs (16k)
+5ddb-ff57: user programs (48k)
+
+CLEAR sets the last address that BASIC can use for user programs, the rest
+of user program RAM is available.
+
+
+Write port xxFE (and any even port):
+7-5 unused
+4 Ear output
+3 Mic output
+2-0 border color
+
+Read port nnFE (and any even low byte):
+nn has 1 bit set to zero, to select one of 8 keyboard rows
+7 unused
+6 Ear input
+5 unused
+4-0 key state (0 = pressed)
+
+
+Spectrum 128k / +2
+
+AY-3-8912 sound:
+fffd: register select / read
+bffd: register write
+
+Extended memory: writes to port 7ffd:
+7-6: unused
+5: disable paging until reboot (48k compatibility)
+4: ROM select (0 = extensions, 1 = original)
+3: framebuffer address top bit (0 = bank 5 @ 4000, 1 = bank 7 @ c000)
+2-0: bank visible at c000
+	2 = shared with 8000
+	5 = shared with 4000
+	7 = second framebuffer
+	1-3-5-7 are shared with graphics, 0-2-4-6 are CPU-exclusive
