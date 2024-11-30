@@ -9,16 +9,23 @@
 # Controls the parallelism of the various build stages.
 PARALLEL=-j4
 
-sudo apt install build-essential golang-go \
-git cmake scons autoconf libtool flex bison \
-libsdl1.2-dev libsdl2-dev libpng-dev \
-libfreetype-dev libgtk-3-dev libncurses-dev || exit $?
-
 mkdir -p ~/code/build || exit $?
-mkdir -p ~/code/libraries || exit $?
 mkdir -p ~/code/emulators || exit $?
+mkdir -p ~/code/libraries || exit $?
+mkdir -p ~/code/projects/spectrum || exit $?
+mkdir -p ~/code/projects/st || exit $?
 mkdir -p ~/code/roms/download || exit $?
 mkdir -p ~/code/tools || exit $?
+
+if [ ! -f ~/code/build/packages.fetched ]
+then
+  echo Fetching apt packages requires root password
+  sudo apt install build-essential golang-go \
+  git cmake scons autoconf libtool flex bison \
+  libsdl1.2-dev libsdl2-dev libpng-dev \
+  libfreetype-dev libgtk-3-dev libncurses-dev || exit $?
+  touch ~/code/build/packages.fetched || exit $?
+fi
 
 if [ ! -f ~/code/build/libspectrum.built ]
 then
@@ -40,23 +47,62 @@ then
   touch ~/code/build/libspectrum.built || exit $?
 fi
 
-if [ ! -f ~/code/build/fuse.built ]
+if [ ! -f ~/code/build/fuse-gtk.built ]
 then
   cd ~/code/emulators || exit $?
-  if [ ! -d fuse ]
+  if [ ! -d fuse-gtk ]
   then
-    git clone https://git.code.sf.net/p/fuse-emulator/fuse || exit $?
-    cd fuse || exit $?
+    git clone https://git.code.sf.net/p/fuse-emulator/fuse fuse-gtk || exit $?
+    cd fuse-gtk || exit $?
   else
-    cd fuse || exit $?
+    cd fuse-gtk || exit $?
     git clean -fdx || exit $?
     git fetch || exit $?
   fi
   git checkout fuse-1.6.0 || exit $?
   ./autogen.sh || exit $?
-  PKG_CONFIG_PATH=~/code/install/lib/pkgconfig ./configure || exit $?
+  PKG_CONFIG_PATH=~/code/install/lib/pkgconfig ./configure --with-gtk || exit $?
   make $PARALLEL || exit $?
-  touch ~/code/build/fuse.built || exit $?
+  mv fuse fuse-gtk || exit $?
+  touch ~/code/build/fuse-gtk.built || exit $?
+fi
+
+if [ ! -f ~/code/build/fuse-sdl.built ]
+then
+  cd ~/code/emulators || exit $?
+  if [ ! -d fuse-sdl ]
+  then
+    git clone https://git.code.sf.net/p/fuse-emulator/fuse fuse-sdl || exit $?
+    cd fuse-sdl|| exit $?
+  else
+    cd fuse-sdl|| exit $?
+    git clean -fdx || exit $?
+    git fetch || exit $?
+  fi
+  git checkout fuse-1.6.0 || exit $?
+  ./autogen.sh || exit $?
+  PKG_CONFIG_PATH=~/code/install/lib/pkgconfig ./configure --with-sdl || exit $?
+  make $PARALLEL || exit $?
+  mv fuse fuse-sdl|| exit $?
+  touch ~/code/build/fuse-sdl.built || exit $?
+fi
+
+if [ ! -f ~/code/build/fbzx.built ]
+then
+  cd ~/code/emulators || exit $?
+  if [ ! -d fbzx ]
+  then
+    git clone https://gitlab.com/rastersoft/fbzx.git || exit $?
+    cd fbzx || exit $?
+  else
+    cd fbzx || exit $?
+    git clean -fdx || exit $?
+    git fetch || exit $?
+  fi
+#  git checkout v2.5.0 || exit $?
+#  ./configure || exit $?
+#  make $PARALLEL || exit $?
+#  touch ~/code/build/hatari.built || exit $?
 fi
 
 if [ ! -f ~/code/build/hatari.built ]
