@@ -347,6 +347,7 @@ then
     git clean -fdx || exit $?
     git fetch || exit $?
   fi
+  git checkout b74421d43f112d39c726d2299083f56c3022f093
   go mod init bin2tap || exit $?
   go mod tidy || exit $?
   go build . || exit $?
