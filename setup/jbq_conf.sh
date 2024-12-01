@@ -74,9 +74,9 @@ then
   if [ ! -d fuse-sdl ]
   then
     git clone https://git.code.sf.net/p/fuse-emulator/fuse fuse-sdl || exit $?
-    cd fuse-sdl|| exit $?
+    cd fuse-sdl || exit $?
   else
-    cd fuse-sdl|| exit $?
+    cd fuse-sdl || exit $?
     git clean -fdx || exit $?
     git fetch || exit $?
   fi
