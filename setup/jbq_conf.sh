@@ -230,6 +230,20 @@ then
   unzip ~/code/roms/download/emutos-1024k-1.3.zip || exit $?
 fi
 
+cd ~/code/exec || exit $?
+if [ ! -d spectrum-roms ]
+then
+  cp -R ~/code/emulators/fbzx/data/spectrum-roms . || exit $?
+fi
+if [ ! -d ZXSpectrum ]
+then
+  cp -R ~/code/emulators/CLK/ROMImages/* . || exit $?
+fi
+if [ ! -f 48.rom ]
+then
+  cp -R ~/code/emulators/fuse-gtk/roms/* . || exit $?
+fi
+
 mkdir -p ~/code/emulators/hatari/share/hatari || exit $?
 if [ ! -f ~/code/emulators/hatari/share/hatari/tos.img ]
 then
