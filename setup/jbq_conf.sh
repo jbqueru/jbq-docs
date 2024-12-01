@@ -12,10 +12,11 @@ PARALLEL=-j4
 mkdir -p ~/code/build || exit $?
 mkdir -p ~/code/emulators || exit $?
 mkdir -p ~/code/libraries || exit $?
-mkdir -p ~/code/projects/spectrum || exit $?
-mkdir -p ~/code/projects/st || exit $?
 mkdir -p ~/code/roms/download || exit $?
 mkdir -p ~/code/tools || exit $?
+mkdir -p ~/code/exec || exit $?
+mkdir -p ~/code/projects/520st || exit $?
+mkdir -p ~/code/projects/spectrum || exit $?
 
 if [ ! -f ~/code/build/packages.fetched ]
 then
@@ -99,10 +100,9 @@ then
     git clean -fdx || exit $?
     git fetch || exit $?
   fi
-#  git checkout v2.5.0 || exit $?
-#  ./configure || exit $?
-#  make $PARALLEL || exit $?
-#  touch ~/code/build/hatari.built || exit $?
+  git checkout 4.8.0 || exit $?
+  make $PARALLEL || exit $?
+  touch ~/code/build/fbzx.built || exit $?
 fi
 
 if [ ! -f ~/code/build/hatari.built ]
