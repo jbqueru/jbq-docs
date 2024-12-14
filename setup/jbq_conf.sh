@@ -117,7 +117,7 @@ then
     git clean -fdx || exit $?
     git fetch || exit $?
   fi
-  git checkout v2.5.0 || exit $?
+  git checkout 18b9a293821311e091be163b492eec7e4323cc72 || exit $?
   ./configure || exit $?
   make $PARALLEL || exit $?
   touch ~/code/build/hatari.built || exit $?

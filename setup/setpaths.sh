@@ -2,6 +2,7 @@
 # various tools
 
 export PATH=$PATH:/home/jbq/code/emulators/hatari/src
+export PATH=$PATH:/home/jbq/code/emulators/hatari/tools/hmsa
 export PATH=$PATH:/home/jbq/code/emulators/caprice32
 export PATH=$PATH:/home/jbq/code/emulators/fuse-gtk
 export PATH=$PATH:/home/jbq/code/emulators/fuse-sdl
