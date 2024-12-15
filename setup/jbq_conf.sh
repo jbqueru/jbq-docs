@@ -260,7 +260,7 @@ then
   else
     cd rmac || exit $?
     git clean -fdx || exit $?
-    git fetch
+    git fetch || exit $?
   fi
   git checkout v2.2.24 || exit $?
   make $PARALLEL || exit $?
