@@ -189,7 +189,7 @@ fi
 echo '(*) creating zasm bundle'
 git --git-dir=zasm.git bundle create ../bundle/zasm.bundle --branches --tags HEAD || exit $?
 
-if [ ! -d zasm.Libraries.git ]
+if [ ! -d zasm-libraries.git ]
 then
   echo '(*) cloning zasm libraries'
   git clone --bare https://github.com/Megatokio/Libraries.git zasm-libraries.git|| exit $?
