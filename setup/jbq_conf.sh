@@ -7,7 +7,7 @@
 # code for those.
 
 # Controls the parallelism of the various build stages.
-PARALLEL=-j8
+PARALLEL=-j2
 
 mkdir -p ~/code/build || exit $?
 mkdir -p ~/code/emulators || exit $?
