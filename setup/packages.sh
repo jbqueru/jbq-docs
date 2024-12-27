@@ -3,7 +3,7 @@
 # This script downloads the dependencies for the tools
 # that I (JBQ) use for retrocomputing development.
 
-mkdir -p ~/code/build/log
+mkdir -p ~/code/build
 
 export PACKAGES='curl build-essential golang-go
   git cmake scons autoconf libtool flex bison
@@ -15,5 +15,5 @@ sudo apt install $PACKAGES || exit $?
 
 for P in $PACKAGES
 do
-  echo $P installed at $(apt version $P) >> ~/code/build/log/log.txt
+  echo $P installed at $(apt version $P) >> ~/code/build/log.txt
 done
