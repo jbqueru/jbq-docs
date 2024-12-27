@@ -15,5 +15,5 @@ sudo apt install $PACKAGES || exit $?
 
 for P in $PACKAGES
 do
-  echo $P installed at $(apt version $P) >> ~/code/build/log.txt
+  echo $P installed at $(dpkg-query -W $P) >> ~/code/build/log.txt
 done
