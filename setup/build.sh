@@ -7,7 +7,7 @@
 # code for those.
 
 # Controls the parallelism of the various build stages.
-PARALLEL=-j2
+PARALLEL=-j4
 
 mkdir -p ~/code/build || exit $?
 mkdir -p ~/code/roms/download || exit $?
