@@ -10,8 +10,6 @@
 PARALLEL=-j2
 
 mkdir -p ~/code/build || exit $?
-mkdir -p ~/code/emulators || exit $?
-mkdir -p ~/code/libraries || exit $?
 mkdir -p ~/code/roms/download || exit $?
 mkdir -p ~/code/tools || exit $?
 mkdir -p ~/code/exec || exit $?
@@ -30,7 +28,7 @@ fi
 
 if [ ! -f ~/code/build/libspectrum.built ]
 then
-  cd ~/code/libraries || exit $?
+  cd ~/code/tools || exit $?
   if [ ! -d libspectrum ]
   then
     git clone ~/code/git/bundle/libspectrum.bundle || exit $?
@@ -42,7 +40,7 @@ then
   fi
   git checkout libspectrum-1.5.0 || exit $?
   ./autogen.sh || exit $?
-  ./configure --prefix ~/code/install || exit $?
+  ./configure --prefix ~/code/tools/install || exit $?
   make $PARALLEL || exit $?
   make install || exit $?
   touch ~/code/build/libspectrum.built || exit $?
@@ -50,7 +48,7 @@ fi
 
 if [ ! -f ~/code/build/fuse-gtk.built ]
 then
-  cd ~/code/emulators || exit $?
+  cd ~/code/tools || exit $?
   if [ ! -d fuse-gtk ]
   then
     git clone ~/code/git/bundle/fuse.bundle fuse-gtk || exit $?
@@ -62,7 +60,7 @@ then
   fi
   git checkout fuse-1.6.0 || exit $?
   ./autogen.sh || exit $?
-  PKG_CONFIG_PATH=~/code/install/lib/pkgconfig ./configure --with-gtk || exit $?
+  PKG_CONFIG_PATH=~/code/tools/install/lib/pkgconfig ./configure --with-gtk || exit $?
   make $PARALLEL || exit $?
   mv fuse fuse-gtk || exit $?
   touch ~/code/build/fuse-gtk.built || exit $?
@@ -70,7 +68,7 @@ fi
 
 if [ ! -f ~/code/build/fuse-sdl.built ]
 then
-  cd ~/code/emulators || exit $?
+  cd ~/code/tools || exit $?
   if [ ! -d fuse-sdl ]
   then
     git clone ~/code/git/bundle/fuse.bundle fuse-sdl || exit $?
@@ -82,7 +80,7 @@ then
   fi
   git checkout fuse-1.6.0 || exit $?
   ./autogen.sh || exit $?
-  PKG_CONFIG_PATH=~/code/install/lib/pkgconfig ./configure --with-sdl || exit $?
+  PKG_CONFIG_PATH=~/code/tools/install/lib/pkgconfig ./configure --with-sdl || exit $?
   make $PARALLEL || exit $?
   mv fuse fuse-sdl|| exit $?
   touch ~/code/build/fuse-sdl.built || exit $?
@@ -90,7 +88,7 @@ fi
 
 if [ ! -f ~/code/build/fbzx.built ]
 then
-  cd ~/code/emulators || exit $?
+  cd ~/code/tools || exit $?
   if [ ! -d fbzx ]
   then
     git clone ~/code/git/bundle/fbzx.bundle || exit $?
@@ -107,7 +105,7 @@ fi
 
 if [ ! -f ~/code/build/hatari.built ]
 then
-  cd ~/code/emulators || exit $?
+  cd ~/code/tools || exit $?
   if [ ! -d hatari ]
   then
     git clone ~/code/git/bundle/hatari.bundle || exit $?
@@ -125,7 +123,7 @@ fi
 
 if [ ! -f ~/code/build/caprice32.built ]
 then
-  cd ~/code/emulators || exit $?
+  cd ~/code/tools || exit $?
   if [ ! -d caprice32 ]
   then
     git clone ~/code/git/bundle/caprice32.bundle || exit $?
@@ -142,7 +140,7 @@ fi
 
 if [ ! -f ~/code/build/CLK.built ]
 then
-  cd ~/code/emulators || exit $?
+  cd ~/code/tools || exit $?
   if [ ! -d CLK ]
   then
     git clone ~/code/git/bundle/CLK.bundle || exit $?
@@ -160,7 +158,7 @@ fi
 
 if [ ! -f ~/code/build/zesarux.built ]
 then
-  cd ~/code/emulators || exit $?
+  cd ~/code/tools || exit $?
   if [ ! -d zesarux ]
   then
     git clone ~/code/git/bundle/zesarux.bundle || exit $?
@@ -179,7 +177,7 @@ fi
 
 if [ ! -f ~/code/build/oricutron.built ]
 then
-  cd ~/code/emulators || exit $?
+  cd ~/code/tools || exit $?
   if [ ! -d oricutron ]
   then
     git clone ~/code/git/bundle/oricutron.bundle || exit $?
