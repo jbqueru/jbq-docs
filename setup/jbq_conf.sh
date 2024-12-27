@@ -7,7 +7,7 @@
 # code for those.
 
 # Controls the parallelism of the various build stages.
-PARALLEL=-j4
+PARALLEL=-j8
 
 mkdir -p ~/code/build || exit $?
 mkdir -p ~/code/emulators || exit $?
@@ -33,7 +33,7 @@ then
   cd ~/code/libraries || exit $?
   if [ ! -d libspectrum ]
   then
-    git clone https://git.code.sf.net/p/fuse-emulator/libspectrum || exit $?
+    git clone ~/code/git/bundle/libspectrum.bundle || exit $?
     cd libspectrum || exit $?
   else
     cd libspectrum || exit $?
@@ -53,7 +53,7 @@ then
   cd ~/code/emulators || exit $?
   if [ ! -d fuse-gtk ]
   then
-    git clone https://git.code.sf.net/p/fuse-emulator/fuse fuse-gtk || exit $?
+    git clone ~/code/git/bundle/fuse.bundle fuse-gtk || exit $?
     cd fuse-gtk || exit $?
   else
     cd fuse-gtk || exit $?
@@ -73,7 +73,7 @@ then
   cd ~/code/emulators || exit $?
   if [ ! -d fuse-sdl ]
   then
-    git clone https://git.code.sf.net/p/fuse-emulator/fuse fuse-sdl || exit $?
+    git clone ~/code/git/bundle/fuse.bundle fuse-sdl || exit $?
     cd fuse-sdl || exit $?
   else
     cd fuse-sdl || exit $?
@@ -93,7 +93,7 @@ then
   cd ~/code/emulators || exit $?
   if [ ! -d fbzx ]
   then
-    git clone https://gitlab.com/rastersoft/fbzx.git || exit $?
+    git clone ~/code/git/bundle/fbzx.bundle || exit $?
     cd fbzx || exit $?
   else
     cd fbzx || exit $?
@@ -110,7 +110,7 @@ then
   cd ~/code/emulators || exit $?
   if [ ! -d hatari ]
   then
-    git clone https://git.tuxfamily.org/hatari/hatari.git/ || exit $?
+    git clone ~/code/git/bundle/hatari.bundle || exit $?
     cd hatari || exit $?
   else
     cd hatari || exit $?
@@ -128,7 +128,7 @@ then
   cd ~/code/emulators || exit $?
   if [ ! -d caprice32 ]
   then
-    git clone https://github.com/ColinPitrat/caprice32.git || exit $?
+    git clone ~/code/git/bundle/caprice32.bundle || exit $?
     cd caprice32 || exit $?
   else
     cd caprice32 || exit $?
@@ -145,7 +145,7 @@ then
   cd ~/code/emulators || exit $?
   if [ ! -d CLK ]
   then
-    git clone https://github.com/TomHarte/CLK.git || exit $?
+    git clone ~/code/git/bundle/CLK.bundle || exit $?
     cd CLK || exit $?
   else
     cd CLK || exit $?
@@ -163,7 +163,7 @@ then
   cd ~/code/emulators || exit $?
   if [ ! -d zesarux ]
   then
-    git clone https://github.com/chernandezba/zesarux.git || exit $?
+    git clone ~/code/git/bundle/zesarux.bundle || exit $?
     cd zesarux || exit $?
   else
     cd zesarux || exit $?
@@ -182,7 +182,7 @@ then
   cd ~/code/emulators || exit $?
   if [ ! -d oricutron ]
   then
-    git clone https://github.com/pete-gordon/oricutron.git || exit $?
+    git clone ~/code/git/bundle/oricutron.bundle || exit $?
     cd oricutron || exit $?
   else
     cd oricutron || exit $?
@@ -255,7 +255,7 @@ then
   cd ~/code/tools || exit $?
   if [ ! -d rmac ]
   then
-    git clone http://tiddly.mooo.com:5000/rmac/rmac.git || exit $?
+    git clone ~/code/git/bundle/rmac.bundle || exit $?
     cd rmac || exit $?
   else
     cd rmac || exit $?
@@ -296,7 +296,7 @@ then
     git clean -fdx || exit $?
     git fetch || exit $?
   fi
-  git checkout 4.4.13 || exit $?
+  git checkout 4.4.15 || exit $?
   make $PARALLEL || exit $?
   touch ~/code/build/zasm.built || exit $?
 fi
@@ -306,7 +306,7 @@ then
   cd ~/code/tools || exit $?
   if [ ! -d dasm ]
   then
-    git clone https://github.com/dasm-assembler/dasm.git || exit $?
+    git clone ~/code/git/bundle/dasm.bundle || exit $?
     cd dasm || exit $?
   else
     cd dasm || exit $?
@@ -323,7 +323,7 @@ then
   cd ~/code/tools || exit $?
   if [ ! -d zmakebas ]
   then
-    git clone https://github.com/chris-y/zmakebas.git || exit $?
+    git clone ~/code/git/bundle/zmakebas.bundle || exit $?
     cd zmakebas || exit $?
   else
     cd zmakebas || exit $?
@@ -340,7 +340,7 @@ then
   cd ~/code/tools || exit $?
   if [ ! -d bin2tap ]
   then
-    git clone https://github.com/retro-speccy/bin2tap.git || exit $?
+    git clone ~/code/git/bundle/bin2tap.bundle || exit $?
     cd bin2tap || exit $?
   else
     cd bin2tap || exit $?
@@ -359,7 +359,7 @@ then
   cd ~/code/tools || exit $?
   if [ ! -d dsk ]
   then
-    git clone https://github.com/jeromelesaux/dsk.git || exit $?
+    git clone ~/code/git/bundle/dsk.bundle || exit $?
     cd dsk || exit $?
   else
     cd dsk || exit $?
@@ -377,7 +377,7 @@ then
   cd ~/code/tools || exit $?
   if [ ! -d osdk ]
   then
-    git clone https://github.com/Oric-Software-Development-Kit/osdk.git || exit $?
+    git clone ~/code/git/bundle/osdk.bundle || exit $?
     cd osdk || exit $?
   else
     cd osdk || exit $?
