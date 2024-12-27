@@ -16,16 +16,6 @@ mkdir -p ~/code/exec || exit $?
 mkdir -p ~/code/projects/520st || exit $?
 mkdir -p ~/code/projects/spectrum || exit $?
 
-if [ ! -f ~/code/build/packages.fetched ]
-then
-  echo Fetching apt packages requires root password
-  sudo apt install curl build-essential golang-go \
-  git cmake scons autoconf libtool flex bison \
-  libsdl1.2-dev libsdl2-dev libpng-dev \
-  libfreetype-dev libgtk-3-dev libncurses-dev || exit $?
-  touch ~/code/build/packages.fetched || exit $?
-fi
-
 if [ ! -f ~/code/build/libspectrum.built ]
 then
   cd ~/code/tools || exit $?
