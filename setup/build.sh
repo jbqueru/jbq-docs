@@ -230,21 +230,21 @@ fi
 cd ~/code/exec || exit $?
 if [ ! -d spectrum-roms ]
 then
-  cp -R ~/code/emulators/fbzx/data/spectrum-roms . || exit $?
+  cp -R ~/code/tools/fbzx/data/spectrum-roms . || exit $?
 fi
 if [ ! -d ZXSpectrum ]
 then
-  cp -R ~/code/emulators/CLK/ROMImages/* . || exit $?
+  cp -R ~/code/tools/CLK/ROMImages/* . || exit $?
 fi
 if [ ! -f 48.rom ]
 then
-  cp -R ~/code/emulators/fuse-gtk/roms/* . || exit $?
+  cp -R ~/code/tools/fuse-gtk/roms/* . || exit $?
 fi
 
-mkdir -p ~/code/emulators/hatari/share/hatari || exit $?
-if [ ! -f ~/code/emulators/hatari/share/hatari/tos.img ]
+mkdir -p ~/code/tools/hatari/share/hatari || exit $?
+if [ ! -f ~/code/tools/hatari/share/hatari/tos.img ]
 then
-  cp ~/code/roms/emutos-192k-1.3/etos192us.img ~/code/emulators/hatari/share/hatari/tos.img || exit $?
+  cp ~/code/roms/emutos-192k-1.3/etos192us.img ~/code/tools/hatari/share/hatari/tos.img || exit $?
 fi
 
 if [ ! -f ~/code/build/tags/rmac ]
