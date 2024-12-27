@@ -272,22 +272,19 @@ then
   then
     git clone ~/code/git/bundle/upx.bundle || exit $?
     cd upx || exit $?
-    git checkout v4.2.4 || exit $?
     git config submodule.vendor/doctest.url ~/code/git/bundle/upx-vendor-doctest.bundle || exit $?
     git config submodule.vendor/lzma-sdk.url ~/code/git/bundle/upx-vendor-lzma-sdk.bundle || exit $?
     git config submodule.vendor/ucl.url ~/code/git/bundle/upx-vendor-ucl.bundle || exit $?
     git config submodule.vendor/valgrind.url ~/code/git/bundle/upx-vendor-valgrind.bundle || exit $?
     git config submodule.vendor/zlib.url ~/code/git/bundle/upx-vendor-zlib.bundle || exit $?
     git submodule init || exit $?
-    git -c protocol.file.allow=always submodule update || exit $?
   else
     cd upx || exit $?
     git clean -fdx || exit $?
     git fetch || exit $?
-    git checkout v4.2.4 || exit $?
-    git -c protocol.file.allow=always submodule update || exit $?
   fi
   git checkout v4.2.4 || exit $?
+  git -c protocol.file.allow=always submodule update || exit $?
   make $PARALLEL || exit $?
   echo upx built at $(git log -1 --pretty=oneline) >> ~/code/build/log.txt
   echo upx built with vendor/doctest at $(git --git-dir=vendor/doctest/.git log -1 --pretty=oneline) >> ~/code/build/log.txt
@@ -307,14 +304,13 @@ then
     cd zasm || exit $?
     git config submodule.Libraries.url ~/code/git/bundle/zasm-libraries.bundle
     git submodule init
-    git -c protocol.file.allow=always submodule update
   else
     cd zasm || exit $?
     git clean -fdx || exit $?
     git fetch || exit $?
-    git -c protocol.file.allow=always submodule update
   fi
-  git checkout 4.4.15 || exit $?
+  git checkout 4.4.13 || exit $?
+  git -c protocol.file.allow=always submodule update
   make $PARALLEL || exit $?
   echo zasm built at $(git log -1 --pretty=oneline) >> ~/code/build/log.txt
   echo zasm built with Libraries at $(git --git-dir=Libraries/.git log -1 --pretty=oneline) >> ~/code/build/log.txt
