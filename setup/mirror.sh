@@ -241,7 +241,7 @@ else
   echo '(*) updating dsk'
   git --git-dir=dsk.git fetch || exit $?
 fi
-echo '(*) creating dskbundle'
+echo '(*) creating dsk bundle'
 git --git-dir=dsk.git bundle create ../bundle/dsk.bundle --branches --tags HEAD || exit $?
 
 if [ ! -d osdk.git ]
@@ -252,7 +252,7 @@ else
   echo '(*) updating osdk'
   git --git-dir=osdk.git fetch || exit $?
 fi
-echo '(*) creating osdk'
+echo '(*) creating osdk bundle'
 git --git-dir=osdk.git bundle create ../bundle/osdk.bundle --branches --tags HEAD || exit $?
 
 echo '(*) preparing mirror archive'
