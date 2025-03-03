@@ -49,7 +49,7 @@ git --git-dir=fbzx.git bundle create ../bundle/fbzx.bundle --branches --tags HEA
 if [ ! -d hatari.git ]
 then
   echo '(*) cloning hatari'
-  git clone --bare https://git.tuxfamily.org/hatari/hatari.git/ || exit $?
+  git clone --bare https://framagit.org/hatari/hatari.git || exit $?
 else
   echo '(*) updating hatari'
   git --git-dir=hatari.git fetch || exit $?
