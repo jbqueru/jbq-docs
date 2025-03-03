@@ -7,7 +7,7 @@
 # code for those.
 
 # Controls the parallelism of the various build stages.
-PARALLEL=-j4
+PARALLEL=-j$(nproc)
 
 mkdir -p ~/code/build/tags || exit $?
 mkdir -p ~/code/tools || exit $?
