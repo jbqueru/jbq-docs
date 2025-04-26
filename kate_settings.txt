@@ -1,0 +1,9 @@
+-Settings/Hide toolbars
+-Setting/Hide navigation bar
+-View/auto-reload document
+-Configure / Appearance / General / Show Whitespace indicators / Always
+-Configure / Appearance / Status Bar / Show Line Ending Type
+-Configure / Editing / General / Word Wrap / 132 columns
+-Configure / Editing / General / Brackets off
+-Configure / Editing/ Indentaiton / Tabs 4
+-Configure / Editing / Autocompletion / Off
